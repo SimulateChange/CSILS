@@ -9,10 +9,13 @@ made up of the shortest possible loops and retains the simplicity, granularity, 
 while guaranteeing that the set is complete. 
 
 The file csils.m is a MATLAB function which takes an nxn adjacency matrix of a graph as input. This file requires that 
-the files computeD2.m and computeT.m be in the same directory. A user can test the CSILS code by first using the
-n_agent_adj.m function to create an adjacency matrix of n "agents" (where the function takes a value for n as input 
-which determines the size of the output matrix, 3 nodes per agent). This is a known graph for which SILS fails to 
-capture all independent loops.
+the files computeD2.m and computeT.m be in the same directory. A user can test the CSILS code by first using either the 
+n_agent_adj.m function or the fully_connected.m function. The n_agent_adj.m function creates an adjacency matrix of 
+n "agents" (where the function takes a value for n as input which determines the size of the output matrix, 3nx3n). 
+This is the graph of a model for which it was first discovered that SILS can fail to capture all independent loops.
+The function fully_connected.m takes a value n and creates an nxn adjacency matrix for a fully connected or complete graph.
+A fully connected graph is one in which every node is connected to every other node. SILS can be seen to fail
+for complete graphs and very highly connected graphs.
 
 Additionally, the function computeD2.m can be used independently (with computeT.m) to compute the second-shortest 
 distance matrix given any adjacency matrix of a graph. This is called the all-pairs second-shortest path problem. 
