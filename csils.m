@@ -231,7 +231,41 @@ D2 = [];
   
 
 % ====================================================================
-% Function for looptrack algorithm searching SSLs.
+% Function for looptrack algorithm.
+% ====================================================================
+
+function x = looptrack(u,v,D)
+
+k = 1;
+x(1) = u;
+for i = 1:(D(u,v)-1)
+    rh = find(D(:,v)==D(u,v)-i);
+    lh = find(D(x(k),:)==1);
+    k = k+1;
+    for w = 1:length(rh)
+        if sum(find(lh == rh(w))) ~= 0
+            x(k) = rh(w);
+            break
+        end
+    end
+end
+
+k = k+1;
+x(k) = v;
+for i = 1:(D(v,u)-1)
+    rh = find(D(:,u)==D(v,u)-i);
+    lh = find(D(x(k),:)==1);
+    k = k+1;
+    for w = 1:length(lh)
+        if sum(find(rh == lh(w))) ~= 0
+            x(k) = lh(w);
+            break
+        end
+    end
+end
+
+% ====================================================================
+% Function for looptrack2 algorithm searching SSLs.
 % ====================================================================
 
 function x = looptrack2(u,v,D1,Duv,Dvu)
